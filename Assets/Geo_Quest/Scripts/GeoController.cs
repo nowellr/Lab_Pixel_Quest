@@ -10,6 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     int varOne = 3;
     public int speed = 3;
     private Rigidbody2D rb;
+    public string nextLevel = "Geo_Quest_Scene_1 1";
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +51,11 @@ public class NewBehaviourScript : MonoBehaviour
                 {
                     string thisLevel = SceneManager.GetActiveScene().name;
                     SceneManager.LoadScene(thisLevel);
+                    break;
+                }
+            case "Finish":
+                {
+                    SceneManager.LoadScene(nextLevel);
                     break;
                 }
         }
