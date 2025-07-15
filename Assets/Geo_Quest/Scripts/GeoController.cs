@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class NewBehaviourScript : MonoBehaviour
 {
     int varOne = 3;
-    public int speed = 1;
+    public int speed = 2;
     private Rigidbody2D rb;
     private SpriteRenderer spr;
     public string Level2 = "Geo_Quest_Scene_1 1";
@@ -77,7 +77,5 @@ public class NewBehaviourScript : MonoBehaviour
                 }
         }
     }
-    
-
 }
 
