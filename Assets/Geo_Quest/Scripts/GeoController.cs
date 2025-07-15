@@ -8,15 +8,17 @@ using UnityEngine.SceneManagement;
 public class NewBehaviourScript : MonoBehaviour
 {
     int varOne = 3;
-    public int speed = 3;
+    public int speed = 1;
     private Rigidbody2D rb;
-    public string nextLevel = "Geo_Quest_Scene_1 1";
+    private SpriteRenderer spr;
+    public string Level2 = "Geo_Quest_Scene_1 1";
     // Start is called before the first frame update
     void Start()
     {
         string varTwo = "World";
         Debug.Log(varOne + varTwo);
         rb = GetComponent<Rigidbody2D>();
+        spr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -24,6 +26,21 @@ public class NewBehaviourScript : MonoBehaviour
     {
         float xInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            spr.color = Color.red;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            spr.color = Color.green;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            spr.color = Color.blue;
+        }
     }
         /*
         if(Input.GetKeyDown(KeyCode.W))
@@ -55,11 +72,10 @@ public class NewBehaviourScript : MonoBehaviour
                 }
             case "Finish":
                 {
-                    SceneManager.LoadScene(nextLevel);
+                    SceneManager.LoadScene(Level2);
                     break;
                 }
         }
-
     }
     
 
