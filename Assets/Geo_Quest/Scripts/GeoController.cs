@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class NewBehaviourScript : MonoBehaviour
+public class GeoController: MonoBehaviour
 {
     int varOne = 3;
     public int speed = 2;
