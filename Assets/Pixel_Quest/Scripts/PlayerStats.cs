@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Cinemachine.DocumentationSortingAttribute;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class PlayerStats : MonoBehaviour
 {
    
     public string Level2 = "GeoLevel_2";
+    private int CoinCounter = 0;
+    public int Health = 3;
 
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,6 +26,18 @@ public class PlayerStats : MonoBehaviour
             case "Finish":
                 {
                     SceneManager.LoadScene(Level2);
+                    break;
+                }
+            case "Coin":
+                {
+                    CoinCounter++;
+                    Destroy(collision.gameObject);
+                    break;
+                }
+            case "Health":
+                {
+                    Health++;
+                    Destroy(collision.gameObject);
                     break;
                 }
         }
