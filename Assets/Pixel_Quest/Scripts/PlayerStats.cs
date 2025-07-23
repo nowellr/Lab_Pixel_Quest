@@ -4,13 +4,13 @@ using UnityEngine;
 using static Cinemachine.DocumentationSortingAttribute;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using JetBrains.Annotations;
 
 public class PlayerStats : MonoBehaviour
 {
-   
-    public string Level2 = "GeoLevel_2";
-    private int CoinCounter = 0;
+    public int CoinCounter = 0;
     public int Health = 3;
+    public Transform respawnPoint;
 
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,13 +19,22 @@ public class PlayerStats : MonoBehaviour
         {
             case "Death":
                 {
-                    string thisLevel = SceneManager.GetActiveScene().name;
-                    SceneManager.LoadScene(thisLevel);
+                    Health--;
+                    if (Health <= 0)
+                    {
+                        string thisLevel = SceneManager.GetActiveScene().name;
+                        SceneManager.LoadScene(thisLevel);
+                    }
+                    else
+                    {
+                        transform.position = respawnPoint.position;
+                    }
                     break;
                 }
             case "Finish":
                 {
-                    SceneManager.LoadScene(Level2);
+                    string nextLevel = collision.GetComponent<LevelGoal>().nextLevel;
+                    SceneManager.LoadScene(nextLevel);
                     break;
                 }
             case "Coin":
@@ -36,8 +45,16 @@ public class PlayerStats : MonoBehaviour
                 }
             case "Health":
                 {
-                    Health++;
-                    Destroy(collision.gameObject);
+                    if (Health < 3)
+                    {
+                        Health++;
+                        Destroy(collision.gameObject);
+                    }
+                    break;
+                }
+            case "Respawn":
+                {
+                    respawnPoint.position = collision.transform.Find("Point").position;
                     break;
                 }
         }
