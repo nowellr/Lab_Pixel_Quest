@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Geo_Quest/Scenes/FIN L6.unity
     guid: e1c52da59e9e60c4e922e8ccc196427d
+  - enabled: 1
+    path: Assets/Hands-On Homework #3/Scenes/HW3_Basement.unity
+    guid: de352e30e3d457f4fa66a79ccee54d59
   m_configObjects: {}
