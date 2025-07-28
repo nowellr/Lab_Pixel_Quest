@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 public class PlayerStats : MonoBehaviour
 {
     public int CoinCounter = 0;
+    public int coinsInLevel = 0;
     public int Health = 3;
     public int _maxHealth = 3;
     public Transform respawnPoint;
@@ -16,8 +17,10 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        coinsInLevel = GameObject.Find("Coins").transform.childCount;
         _playerUIController = GetComponent<PlayerUIController>();
-        
+        _playerUIController.StartUI();
+        _playerUIController.UpdateText(CoinCounter + "/" + coinsInLevel);
     }
 
     // Update is called once per frame
@@ -50,6 +53,8 @@ public class PlayerStats : MonoBehaviour
                 {
                     CoinCounter++;
                     Destroy(collision.gameObject);
+
+                    _playerUIController.UpdateText(CoinCounter + "/" + coinsInLevel);
                     break;
                 }
             case "Health":
